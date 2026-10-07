@@ -1,0 +1,10 @@
+name: reinforce
+reward: correct_digits  # exact_match, correct_digits, circular_distance
+num_rollouts: 1
+baseline_decay: 0.9     # EMA starts at zero and uses previous batches only
+entropy_coef: 0.0
+kl_coef: 0.0
+phases:
+  reinforce:
+    epochs: ${training.epochs}
+    lr: ${training.lr}

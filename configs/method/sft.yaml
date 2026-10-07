@@ -1,0 +1,5 @@
+name: sft
+phases:
+  sft:
+    epochs: ${training.epochs}
+    lr: ${training.lr}

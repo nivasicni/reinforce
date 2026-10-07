@@ -1,0 +1,4 @@
+name: reversal
+length: 6
+num_examples: 10000
+dataset_seed: 0

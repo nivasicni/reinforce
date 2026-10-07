@@ -1,0 +1,5 @@
+name: modular_addition
+modulus: 113
+digits: 3
+num_examples: null  # null: all modulus**2 ordered pairs
+dataset_seed: 0

@@ -1,0 +1,5 @@
+name: repetition
+length: 6
+repeats: 2
+num_examples: 10000
+dataset_seed: 0

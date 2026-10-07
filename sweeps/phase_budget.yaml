@@ -1,0 +1,28 @@
+# 15 runs: 3 tasks x 5 ways to allocate 20 total epochs.
+common: [training.epochs=20]
+tasks: [modular_addition, reversal, repetition]
+seeds: [42]
+train_fractions: [0.8]
+variants:
+  - name: sft20
+    overrides: [method=sft]
+  - name: reinforce20
+    overrides: [method=reinforce, method.reward=correct_digits]
+  - name: combo5_15
+    overrides:
+      - method=combo
+      - method.phases.sft.epochs=5
+      - method.phases.reinforce.epochs=15
+      - method.reward=correct_digits
+  - name: combo10_10
+    overrides:
+      - method=combo
+      - method.phases.sft.epochs=10
+      - method.phases.reinforce.epochs=10
+      - method.reward=correct_digits
+  - name: combo15_5
+    overrides:
+      - method=combo
+      - method.phases.sft.epochs=15
+      - method.phases.reinforce.epochs=5
+      - method.reward=correct_digits

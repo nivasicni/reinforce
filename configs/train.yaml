@@ -1,0 +1,34 @@
+defaults:
+  - method: sft
+  - task: modular_addition
+  - _self_
+
+# override settings with e.g. training.epochs=5 model.d_model=64 method=combo task=repetition
+seed: 42
+device: auto
+
+data:
+  train_fraction: 0.8
+  test_fraction: 0.2
+  split_seed: 0
+
+model:
+  d_model: 128
+  n_heads: 4
+  n_layers: 2
+
+training:
+  epochs: 20
+  batch_size: 128
+  lr: 0.0003
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: runs/${method.name}/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+  sweep:
+    dir: runs/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+    subdir: ${hydra.job.num}

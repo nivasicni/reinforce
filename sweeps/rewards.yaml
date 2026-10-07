@@ -1,0 +1,20 @@
+# 14 runs: RL from scratch and 10+10 combo for each applicable reward/task.
+common: [training.epochs=20]
+tasks: [modular_addition, reversal, repetition]
+seeds: [42]
+train_fractions: [0.8]
+variants:
+  - name: reinforce_exact
+    overrides: [method=reinforce, method.reward=exact_match]
+  - name: reinforce_digits
+    overrides: [method=reinforce, method.reward=correct_digits]
+  - name: reinforce_circular
+    tasks: [modular_addition]
+    overrides: [method=reinforce, method.reward=circular_distance]
+  - name: combo_exact
+    overrides: [method=combo, method.reward=exact_match]
+  - name: combo_digits
+    overrides: [method=combo, method.reward=correct_digits]
+  - name: combo_circular
+    tasks: [modular_addition]
+    overrides: [method=combo, method.reward=circular_distance]

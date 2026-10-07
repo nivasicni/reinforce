@@ -1,0 +1,26 @@
+# 24 runs: all REINFORCE first, then all SFT, then all combo.
+# Exhaustive modular-addition dataset by default: 12,769 / 375,769 examples.
+common:
+  - training.epochs=20
+  - task.digits=3
+  - task.num_examples=null
+tasks: [modular_addition]
+seeds: [42]
+cases:
+  - name: mod113
+    overrides: [task.modulus=113, data.test_fraction=0.2]
+    train_fractions: [0.2, 0.4, 0.6, 0.8]  # 2,553 / 5,107 / 7,661 / 10,215 train; 2,554 test.
+  - name: mod613
+    overrides: [task.modulus=613, data.test_fraction=0.05]
+    train_fractions: [0.05, 0.1, 0.15, 0.2]  # 18,788 / 37,576 / 56,365 / 75,153 train; 18,789 test.
+variants:
+  - name: reinforce20
+    overrides: [method=reinforce, method.reward=correct_digits]
+  - name: sft20
+    overrides: [method=sft]
+  - name: combo10_10
+    overrides:
+      - method=combo
+      - method.phases.sft.epochs=10
+      - method.phases.reinforce.epochs=10
+      - method.reward=correct_digits

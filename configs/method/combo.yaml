@@ -1,0 +1,14 @@
+name: combo
+reward: correct_digits
+num_rollouts: 1
+baseline_decay: 0.9
+entropy_coef: 0.0
+kl_coef: 0.0
+
+phases:
+  sft:
+    epochs: 10
+    lr: ${training.lr}
+  reinforce:
+    epochs: 10
+    lr: ${training.lr}
